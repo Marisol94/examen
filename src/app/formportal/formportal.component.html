@@ -1,0 +1,128 @@
+<div class="container example-form">
+  <form [formGroup]="form" (ngSubmit)="saveDetails(form)">
+    <mat-form-field appearance="standard">
+      <mat-label>Paterno</mat-label>
+      <input matInput maxlength="15" inputmode="tel" placeholder="Paterno" formControlName="paterno" #nameInput>
+      <mat-error>Apellido requerido</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard">
+      <mat-label>Materno</mat-label>
+      <input matInput maxlength="15" inputmode="tel" placeholder="materno" formControlName="materno" #nameInput>
+      <mat-error>Apellido requerido</mat-error>
+  </mat-form-field>
+  <br>
+      <mat-form-field appearance="standard">
+          <mat-label>Nombre</mat-label>
+          <input matInput maxlength="15" inputmode="tel" placeholder="nombre" formControlName="nombre" #nameInput>
+          <mat-error>Nombre requerido</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" hintLabel="Sexo requerido">
+        <mat-label>Sexo</mat-label>
+        <mat-select matNativeControl name="sexo" formControlName="sexo">
+            <mat-option value="F">Femenino</mat-option>
+            <mat-option value="M">Masculino</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha Nac.</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="nacimiento">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" hintLabel="País requerido">
+      <mat-label>Pais Nac.</mat-label>
+      <mat-select matNativeControl name="country" formControlName="country">
+          <mat-option *ngFor="let c of country" [value]="c.Name">{{c.Name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" hintLabel="Requerido">
+      <mat-label>Provincia Nac.</mat-label>
+      <mat-select matNativeControl name="provincia" formControlName="provincia">
+        <mat-option *ngFor="let p of provincias" [value]="p.Name">{{p.Name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" hintLabel="Requerido">
+      <mat-label>Localidad Nac.</mat-label>
+      <mat-select matNativeControl name="localidad" formControlName="localidad">
+        <mat-option *ngFor="let p of provincias" [value]="p.Name">{{p.Name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard">
+      <mat-label>Peso</mat-label>
+      <input matInput  inputmode="tel"  formControlName="peso" #nameInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard">
+      <mat-label>Estatura</mat-label>
+      <input matInput  inputmode="tel"  formControlName="estatura" #nameInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Gpo. Sanguineo</mat-label>
+      <mat-select matNativeControl name="sanguineo" formControlName="sanguineo">
+          <mat-option value="Apos">A+</mat-option>
+          <mat-option value="Opos">O+</mat-option>
+          <mat-option value="Bpos">B+</mat-option>
+          <mat-option value="Aneg">A-</mat-option>
+          <mat-option value="Oneg">O-</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" >
+      <mat-label>Nacionalidad</mat-label>
+      <mat-select matNativeControl name="nacionalidad" formControlName="nacionalidad">
+          <mat-option value="japonesa">Japonesa</mat-option>
+          <mat-option value="mexicana">Mexicana</mat-option>
+          <mat-option value="francesa">Francesa</mat-option>
+          <mat-option value="colombiana">Colombiana</mat-option>
+          <mat-option value="peruana">Peruana</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Civil</mat-label>
+      <mat-select matNativeControl name="civil" formControlName="civil">
+          <mat-option value="soltero">Soltero</mat-option>
+          <mat-option value="casado">Casado</mat-option>
+          <mat-option value="divorcio">Divorciado</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard">
+      <mat-label>Número de Licencia</mat-label>
+      <input matInput  inputmode="tel"  formControlName="licencia" #nameInput>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="standard">
+      <mat-label>Núm. Pasaporte</mat-label>
+      <input matInput  inputmode="tel"  formControlName="pasaporte" #nameInput>
+    </mat-form-field>
+    <br>
+      <mat-form-field appearance="legacy">
+          <mat-label>Direccion E-mail</mat-label>
+          <input matInput type="email" formControlName="email">
+          <mat-icon matSuffix>mail_outline</mat-icon>
+          <mat-error *ngIf="form.controls['email'].errors?.['pattern']">Introduzca email valido</mat-error>
+      </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Supervisor</mat-label>
+      <mat-select matNativeControl name="supervisor" formControlName="supervisor">
+        <mat-option *ngFor="let s of supervisores" [value]="s.full_name">{{s.full_name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+      <br>
+      <div mat-dialog-actions align="end">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Enviar</button>
+      </div>
+  </form>
+  
+</div>
